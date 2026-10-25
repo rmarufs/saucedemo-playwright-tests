@@ -51,4 +51,8 @@ saucedemo-playwright-tests/
 
 ## Test coverage
 
-Coming soon
+- Successful login with `standard_user`.
+- Error for an invalid password.
+- Error for the locked `locked_out_user` account.
+- Error when both login fields are empty.
+- Error when the password is empty.
