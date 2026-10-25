@@ -61,3 +61,34 @@ saucedemo-playwright-tests/
 - Displaying an added product in the cart.
 - Completing checkout with valid customer information.
 - Checkout validation for missing first name and postal code.
+
+### problem_user known bugs
+
+The following checks run for `standard_user` and are strict `xfail` cases for
+`problem_user` until the corresponding defect is fixed:
+
+- [KAN-4](#kan-4): unique product images.
+- [KAN-5](#kan-5): sorting by name and price.
+- [KAN-6](#kan-6): adding all products to the cart.
+- [KAN-7](#kan-7): opening the Sauce Labs Bike Light details.
+- [KAN-8](#kan-8): preserving checkout form values.
+
+#### KAN-4
+
+All six catalog product images have unique sources.
+
+#### KAN-5
+
+Products sort correctly by name and price.
+
+#### KAN-6
+
+All six catalog products can be added to the cart.
+
+#### KAN-7
+
+The Sauce Labs Bike Light link opens its own details and price.
+
+#### KAN-8
+
+Checkout preserves first-name and last-name field values before continuing.
