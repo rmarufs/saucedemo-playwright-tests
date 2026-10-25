@@ -1,5 +1,7 @@
 # SauceDemo Playwright Tests
 
+[![Tests](https://github.com/rmarufs/saucedemo-playwright-tests/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/rmarufs/saucedemo-playwright-tests/actions/workflows/tests.yml)
+
 E2E tests for saucedemo.com using Playwright and pytest.
 
 ## Tech stack
@@ -35,6 +37,11 @@ pytest
 pytest --headed
 pytest --browser firefox
 ```
+
+## CI
+
+GitHub Actions runs the test suite on pushes and pull requests targeting `main`.
+When a test fails, Playwright screenshots and traces are uploaded as artifacts.
 
 ## Project structure
 
