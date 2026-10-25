@@ -56,3 +56,8 @@ saucedemo-playwright-tests/
 - Error for the locked `locked_out_user` account.
 - Error when both login fields are empty.
 - Error when the password is empty.
+- Adding one or two products to the cart.
+- Removing a product from the catalog.
+- Displaying an added product in the cart.
+- Completing checkout with valid customer information.
+- Checkout validation for missing first name and postal code.

@@ -1,1 +1,12 @@
-# Shared fixtures for the test suite will go here.
+import pytest
+from playwright.sync_api import Page
+
+
+@pytest.fixture
+def logged_in_page(page: Page) -> Page:
+    """Return a page logged in as the standard SauceDemo user."""
+    page.goto("/")
+    page.locator("[data-test='username']").fill("standard_user")
+    page.locator("[data-test='password']").fill("secret_sauce")
+    page.locator("[data-test='login-button']").click()
+    return page
