@@ -17,6 +17,7 @@ USERS = [
 
 
 def begin_checkout(page: Page) -> None:
+    # Добавляет товар в корзину и открывает оформление заказа.
     page.locator("[data-test='add-to-cart-sauce-labs-backpack']").click()
     page.locator(".shopping_cart_link").click()
     page.locator("[data-test='checkout']").click()
@@ -26,6 +27,7 @@ def begin_checkout(page: Page) -> None:
 def test_product_images_are_unique(
     login_as: Callable[[str], Page], username: str
 ) -> None:
+    # Проверяет, что изображения товаров не повторяются.
     page = login_as(username)
     product_images = page.locator("img.inventory_item_img")
     expect(product_images).to_have_count(6)
@@ -52,6 +54,7 @@ def test_product_images_are_unique(
 def test_products_sort_by_name_descending(
     login_as: Callable[[str], Page], username: str
 ) -> None:
+    # Проверяет сортировку товаров по названию от Я до А.
     page = login_as(username)
     page.locator("[data-test='product-sort-container']").select_option("za")
     product_names = page.locator("[data-test='inventory-item-name']")
@@ -76,6 +79,7 @@ def test_products_sort_by_name_descending(
 def test_products_sort_by_price_ascending(
     login_as: Callable[[str], Page], username: str
 ) -> None:
+    # Проверяет сортировку товаров по цене по возрастанию.
     page = login_as(username)
     page.locator("[data-test='product-sort-container']").select_option("lohi")
     product_prices = page.locator("[data-test='inventory-item-price']")
@@ -100,6 +104,7 @@ def test_products_sort_by_price_ascending(
 def test_all_products_can_be_added_to_cart(
     login_as: Callable[[str], Page], username: str
 ) -> None:
+    # Проверяет добавление всех товаров в корзину.
     page = login_as(username)
     product_slugs = [
         "sauce-labs-backpack",
@@ -133,6 +138,7 @@ def test_all_products_can_be_added_to_cart(
 def test_bike_light_opens_its_product_details(
     login_as: Callable[[str], Page], username: str
 ) -> None:
+    # Проверяет открытие карточки товара Bike Light.
     page = login_as(username)
     page.locator("[data-test='item-0-title-link']").click()
     expect(page).to_have_url("https://www.saucedemo.com/inventory-item.html?id=0")
@@ -160,6 +166,7 @@ def test_bike_light_opens_its_product_details(
 def test_checkout_keeps_customer_data_in_correct_fields(
     login_as: Callable[[str], Page], username: str
 ) -> None:
+    # Проверяет сохранение данных покупателя в нужных полях.
     page = login_as(username)
     begin_checkout(page)
     first_name = page.locator("[data-test='firstName']")

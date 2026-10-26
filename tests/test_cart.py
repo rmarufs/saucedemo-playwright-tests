@@ -6,12 +6,14 @@ BACKPACK_ADD_BUTTON = "[data-test='add-to-cart-sauce-labs-backpack']"
 
 
 def test_adding_one_product_updates_cart_badge(logged_in_page: Page) -> None:
+    # Проверяет счётчик корзины после добавления одного товара.
     logged_in_page.locator(BACKPACK_ADD_BUTTON).click()
 
     expect(logged_in_page.locator(".shopping_cart_badge")).to_have_text("1")
 
 
 def test_adding_two_products_updates_cart_badge(logged_in_page: Page) -> None:
+    # Проверяет счётчик корзины после добавления двух товаров.
     logged_in_page.locator(BACKPACK_ADD_BUTTON).click()
     logged_in_page.locator("[data-test='add-to-cart-sauce-labs-bike-light']").click()
 
@@ -19,6 +21,7 @@ def test_adding_two_products_updates_cart_badge(logged_in_page: Page) -> None:
 
 
 def test_removing_product_from_catalog_hides_cart_badge(logged_in_page: Page) -> None:
+    # Проверяет скрытие счётчика после удаления товара.
     logged_in_page.locator(BACKPACK_ADD_BUTTON).click()
     logged_in_page.locator("[data-test='remove-sauce-labs-backpack']").click()
 
@@ -26,6 +29,7 @@ def test_removing_product_from_catalog_hides_cart_badge(logged_in_page: Page) ->
 
 
 def test_added_product_is_shown_in_cart(logged_in_page: Page) -> None:
+    # Проверяет, что добавленный товар отображается в корзине.
     logged_in_page.locator(BACKPACK_ADD_BUTTON).click()
     logged_in_page.locator(".shopping_cart_link").click()
 

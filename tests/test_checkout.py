@@ -5,12 +5,14 @@ BACKPACK_ADD_BUTTON = "[data-test='add-to-cart-sauce-labs-backpack']"
 
 
 def start_checkout(page: Page) -> None:
+    # Добавляет рюкзак в корзину и начинает оформление заказа.
     page.locator(BACKPACK_ADD_BUTTON).click()
     page.locator(".shopping_cart_link").click()
     page.locator("[data-test='checkout']").click()
 
 
 def test_user_can_complete_checkout(logged_in_page: Page) -> None:
+    # Проверяет успешное оформление заказа.
     start_checkout(logged_in_page)
     logged_in_page.locator("[data-test='firstName']").fill("Jane")
     logged_in_page.locator("[data-test='lastName']").fill("Doe")
@@ -24,6 +26,7 @@ def test_user_can_complete_checkout(logged_in_page: Page) -> None:
 
 
 def test_checkout_shows_error_when_form_is_empty(logged_in_page: Page) -> None:
+    # Проверяет ошибку при пустой форме заказа.
     start_checkout(logged_in_page)
     logged_in_page.locator("[data-test='continue']").click()
 
@@ -33,6 +36,7 @@ def test_checkout_shows_error_when_form_is_empty(logged_in_page: Page) -> None:
 
 
 def test_checkout_shows_error_when_postal_code_is_empty(logged_in_page: Page) -> None:
+    # Проверяет ошибку без почтового индекса.
     start_checkout(logged_in_page)
     logged_in_page.locator("[data-test='firstName']").fill("Jane")
     logged_in_page.locator("[data-test='lastName']").fill("Doe")

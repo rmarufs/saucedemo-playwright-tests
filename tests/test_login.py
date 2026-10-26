@@ -2,12 +2,14 @@ from playwright.sync_api import Page, expect
 
 
 def login(page: Page, username: str, password: str) -> None:
+    # Заполняет форму и отправляет данные для входа.
     page.locator("[data-test='username']").fill(username)
     page.locator("[data-test='password']").fill(password)
     page.locator("[data-test='login-button']").click()
 
 
 def test_standard_user_can_log_in(page: Page) -> None:
+    # Проверяет успешный вход стандартного пользователя.
     page.goto("/")
 
     login(page, "standard_user", "secret_sauce")
@@ -17,6 +19,7 @@ def test_standard_user_can_log_in(page: Page) -> None:
 
 
 def test_login_shows_error_for_invalid_password(page: Page) -> None:
+    # Проверяет сообщение при неверном пароле.
     page.goto("/")
 
     login(page, "standard_user", "invalid_password")
@@ -27,6 +30,7 @@ def test_login_shows_error_for_invalid_password(page: Page) -> None:
 
 
 def test_locked_out_user_cannot_log_in(page: Page) -> None:
+    # Проверяет запрет входа для заблокированного пользователя.
     page.goto("/")
 
     login(page, "locked_out_user", "secret_sauce")
@@ -37,6 +41,7 @@ def test_locked_out_user_cannot_log_in(page: Page) -> None:
 
 
 def test_login_shows_error_when_fields_are_empty(page: Page) -> None:
+    # Проверяет ошибку при пустых полях формы.
     page.goto("/")
 
     login(page, "", "")
@@ -45,6 +50,7 @@ def test_login_shows_error_when_fields_are_empty(page: Page) -> None:
 
 
 def test_login_shows_error_when_password_is_empty(page: Page) -> None:
+    # Проверяет ошибку, если пароль не введён.
     page.goto("/")
 
     login(page, "standard_user", "")
